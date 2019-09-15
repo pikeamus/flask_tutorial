@@ -40,3 +40,8 @@ class RegistrationForm(FlaskForm):
         user = User.query.filter_by(email=email.data).first()
         if user is not None:
             raise ValidationError('That email address has already been used to register.')
+
+class PostForm(FlaskForm):
+    post = TextAreaField('Say something', validators=[DataRequired(), 
+        Length(min=1, max=140)])
+    submit = SubmitField('Post')
